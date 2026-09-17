@@ -1,0 +1,10 @@
+{
+  "name": "gemma-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local Gemma desktop interface for Ollama, research, shared memory and project links.",
+  "scripts": {
+    "start": "node server.mjs"
+  }
+}
