@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gemma Desktop</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">G</div>
+        <div><strong>Gemma</strong><span>Desktop Research Assistant</span></div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-item active" data-view="chat"><span>Chat</span><small>Talk to Gemma</small></button>
+        <button class="nav-item" data-view="research"><span>Research</span><small>Research jobs & findings</small></button>
+        <button class="nav-item" data-view="products"><span>Products</span><small>Product knowledge base</small></button>
+        <button class="nav-item" data-view="evidence"><span>Evidence</span><small>Sources & candidates</small></button>
+        <button class="nav-item" data-view="memory"><span>Shared Memory</span><small>ChatGPT ↔ Gemma</small></button>
+        <button class="nav-item" data-view="learning"><span>Learning</span><small>Rules & lessons</small></button>
+        <button class="nav-item" data-view="tasks"><span>Tasks</span><small>Queue & controls</small></button>
+        <button class="nav-item" data-view="activity"><span>Activity</span><small>Local activity log</small></button>
+        <button class="nav-item" data-view="settings"><span>Settings</span><small>Connections</small></button>
+      </nav>
+
+      <div class="connection-card">
+        <div class="connection-title">Local connections</div>
+        <div class="status-row"><i id="ollamaDot" class="dot"></i><span>Ollama</span><b id="ollamaStatus">Checking</b></div>
+        <div class="status-row"><i class="dot online"></i><span>Local database</span><b>Ready</b></div>
+        <div class="status-row"><i class="dot neutral"></i><span>Supabase sync</span><b>Planned</b></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div><h1 id="pageTitle">Chat with Gemma</h1><p id="pageSubtitle">Your local Gemma workspace</p></div>
+        <div class="top-actions">
+          <button class="ghost" data-local="agent">Open Research Agent</button>
+          <button class="ghost" data-local="memory">Open Shared Memory</button>
+          <button class="primary" id="refreshStatus">Refresh status</button>
+        </div>
+      </header>
+
+      <section id="view-chat" class="view active">
+        <div class="chat-layout">
+          <div class="chat-panel">
+            <div id="chatMessages" class="messages">
+              <div class="message gemma"><div class="avatar">G</div><div><div class="message-name">Gemma</div><div class="bubble">Hello Gary. I'm running locally through Ollama. Ask me something to test the desktop connection.</div></div></div>
+            </div>
+            <form id="chatForm" class="composer">
+              <textarea id="chatInput" rows="2" placeholder="Ask Gemma something…" autocomplete="off"></textarea>
+              <div class="composer-footer"><span id="modelLabel">Model: gemma3:4b</span><button class="primary" type="submit" id="sendButton">Send</button></div>
+            </form>
+          </div>
+          <aside class="chat-side">
+            <div class="card"><h3>Quick actions</h3><button class="quick" data-prompt="What is your current status and which model are you running?">Check status</button><button class="quick" data-prompt="Explain what information you currently have available locally.">What do you know?</button><button class="quick" data-prompt="List the research tasks you would be ready to handle once the local research database is connected.">Research capabilities</button></div>
+            <div class="card"><h3>Projects</h3><button class="project">GearCashOut <span>Sample / research</span></button><button class="project">TradeFlow <span>Future connection</span></button><button class="project">Shared Knowledge <span>Planned</span></button></div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="view-research" class="view"><div class="section-grid"><div class="card large"><h2>Research Centre</h2><p>This desktop section is the starting point for moving research workload onto the PC. The existing Research PC worker remains separate until the migration is designed and tested.</p><div class="button-grid"><button class="primary" data-local="agent">Open Research Agent</button><button class="secondary">Research Queue <span>Coming next</span></button><button class="secondary">Start Research <span>Coming next</span></button><button class="secondary">Research History <span>Coming next</span></button></div></div><div class="card"><h3>Current architecture</h3><div class="architecture"><b>Gemma Desktop</b><span>→</span><b>Ollama</b><span>→</span><b>Gemma</b></div><p class="muted">The controlled database and application connectors will be added after the current TradeFlow work is complete.</p></div></div></section>
+
+      <section id="view-products" class="view"><div class="card large"><h2>Product Knowledge Base</h2><p>The planned shared product layer will hold canonical product identities, descriptions, manufacturer data, identifiers, specifications and market evidence.</p><div class="feature-list"><div><b>Product identity</b><span>Manufacturer, model, variant, SKU, MPN, EAN/GTIN, ASIN</span></div><div><b>Descriptions</b><span>Manufacturer information kept separate from customer descriptions</span></div><div><b>Research evidence</b><span>UK new, UK used, overseas reference, sources and timestamps</span></div><div><b>Reuse</b><span>One researched product can support TradeFlow and GearCashOut without duplicate research</span></div></div></div></section>
+
+      <section id="view-evidence" class="view"><div class="card large"><h2>Evidence</h2><p>Evidence review will be connected to Gemma's existing research workflow rather than replacing it. Approved evidence will remain distinct from proposed candidates.</p><div class="empty-state">Evidence browser — planned integration</div></div></section>
+
+      <section id="view-memory" class="view"><div class="card large"><div class="section-heading"><div><h2>Shared Memory</h2><p>Local memory store for controlled ChatGPT ↔ Gemma handovers.</p></div><button class="secondary" id="reloadMemory">Reload memory</button></div><div id="memoryList" class="memory-list"><div class="empty-state">Loading local memory…</div></div></div></section>
+
+      <section id="view-learning" class="view"><div class="card large"><h2>Learning</h2><p>Rules, lessons and research methodology will be stored locally and versioned. Nothing here is automatically treated as authoritative business data.</p><div class="empty-state">Learning browser — planned integration</div></div></section>
+
+      <section id="view-tasks" class="view"><div class="card large"><h2>Tasks & Controls</h2><p>These controls will eventually operate the local queue and the existing Research PC supervisor without creating duplicate workers.</p><div class="button-grid"><button class="secondary" data-local="agent">Open agent folder</button><button class="secondary">Start worker <span>Existing control to be connected</span></button><button class="secondary">Stop worker <span>Existing control to be connected</span></button><button class="secondary">Restart worker <span>Existing control to be connected</span></button></div></div></section>
+
+      <section id="view-activity" class="view"><div class="card large"><h2>Activity</h2><p>Local chat history is currently stored in the Gemma Desktop data folder. Research and sync events will be added as the local database is implemented.</p><div class="empty-state">Activity browser — planned integration</div></div></section>
+
+      <section id="view-settings" class="view"><div class="section-grid"><div class="card"><h2>Local settings</h2><label>Ollama URL<input id="ollamaUrl" value="http://127.0.0.1:11434" readonly></label><label>Model<input id="modelSetting" value="gemma3:4b" readonly></label><p class="muted">Connection settings will become editable only after the local service and configuration contract are established.</p></div><div class="card"><h2>Project links</h2><a class="link-button" href="https://github.com/laurendigitaluk/Action-Buyer-UK" target="_blank" rel="noreferrer">Action Buyer UK GitHub</a><a class="link-button" href="https://supabase.com/dashboard" target="_blank" rel="noreferrer">Supabase Dashboard</a><button class="link-button" data-local="gemma">Open Gemma Desktop folder</button></div></div></section>
+    </main>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>
