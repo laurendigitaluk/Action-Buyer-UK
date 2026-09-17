@@ -1,0 +1,3 @@
+﻿# Local Gemma Desktop data - never commit
+tools/gemma-desktop/data/*
+!tools/gemma-desktop/data/.gitkeep
