@@ -4645,3 +4645,21 @@ After reconciliation, the active customer-visible Mobile Phones product keys mat
 - No overseas evidence, contract totals or new retail offers may be placed in UK-used evidence.
 
 This batch changed catalogue data only. No application code, schema, valuation rules, RLS, Edge Functions, Stripe, tenant/customer data or Worker deployments were changed.
+
+
+## TradeFlow mobile catalogue batch 109 — 5 November 2026
+
+Three additional UK used/refurbished observations were added for the exact Samsung Galaxy A57 5G 128GB package in both TEST and LIVE:
+
+- refurbed UK: £272 Premium refurbished, exact 8GB/128GB Dual-SIM Awesome Gray; UK domestic dispatch, 12-month seller warranty and 30-day returns.
+- Cash Converters Levenshulme: £269.99, Good/previous-use, unlocked 128GB Grey, 12-month warranty. The page's accessory wording conflicts; do not use accessory inclusion in valuation.
+- Cash Converters Lewisham: £299.99, very minor cosmetic wear, unlocked 128GB Blue, 12-month warranty.
+
+All three are separate seller offers with their own stable source record keys. They were inserted independently in both environments. Product business keys remain aligned at 156 active customer-visible mobile packages in TEST and LIVE. Post-write totals: TEST 160 products / 574 evidence (558 active); LIVE 158 products / 568 evidence (555 active). The two extra TEST product rows remain hidden/retired audit records, not customer-visible catalogue differences.
+
+The same 3 used-evidence gaps remain intentionally open in both environments:
+- Motorola Edge 70 Plus 256GB — no credible exact UK used/refurb offer found; available MSE offers are new retail only.
+- OPPO Reno16 F 5G 256GB — eBay refurbished result currently advertises free international postage; UK dispatch is not verified, so excluded.
+- OPPO Find X10 Pro Max 512GB — surfaced exact UK listings are new/sealed, not used; overseas/international results excluded.
+
+No fabricated evidence was inserted for those gaps.
