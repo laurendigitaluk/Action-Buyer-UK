@@ -4061,3 +4061,15 @@ Do not fill the remaining exact used-evidence gaps with inappropriate offers:
 - OPPO Find X10 Pro Max 512GB: exact UK eBay offers surfaced are new/sealed; not used evidence.
 
 Continue research on those three gaps, but only insert evidence when seller, market, condition and exact package are verified.
+
+## TradeFlow mobile catalogue batch 110 — 5 November 2026
+
+Five verified UK refurbished offers for Apple iPhone 13 128GB were inserted directly and independently into both current TradeFlow Supabase environments. Prices/grades: giffgaff £209 Good; The Big Phone Store £199.99 Good; Reboxed £189 Good (preparing/refurbishing 4–6 days, checkout fee may apply); Furbishmarket £191.99 Good; Tech Market £199.99 Good (listed, live stock quantity not stated). All records preserve 128GB, retailer grade, source URL, GBP and availability caveats.
+
+Post-write verification:
+- TEST: 160 mobile products (159 active / 156 active visible), 579 evidence rows (563 active).
+- LIVE: 158 mobile products (158 active / 156 active visible), 573 evidence rows (560 active).
+- iPhone 13 128GB: six active UK-used observations in each environment.
+- Active customer-visible mobile product business keys: 156 in each environment; zero differences.
+
+Continue to maintain exact package matches and independent TEST/LIVE IDs. Do not add evidence for a product when seller dispatch, condition, or exact variant is not verified.
