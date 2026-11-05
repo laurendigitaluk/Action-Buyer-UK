@@ -4039,3 +4039,25 @@ When continuing mobile catalogue work in TradeFlow, perform the actual product/e
 - Added the missing LIVE Pixel 10 128GB package and mirrored its three existing UK evidence records with a LIVE-specific product ID.
 - TEST and LIVE now have 156 matching active customer-visible Mobile Phones product keys.
 - No Worker deployment or application-code/schema/valuation/RLS/Edge Function/Stripe change was part of this data-only batch.
+
+
+## TradeFlow mobile catalogue batch 109 — 5 November 2026
+
+Added three independently verified UK used/refurbished offers for Samsung Galaxy A57 5G 128GB to both TEST and LIVE. Exact package match:
+- refurbed UK £272 Premium, 8GB RAM/128GB, domestic UK dispatch, 12-month seller warranty and 30-day returns.
+- Cash Converters UK £269.99 Good, unlocked 128GB Grey, 12-month warranty; accessory wording conflicts and must not be used for valuation.
+- Cash Converters UK £299.99, very minor cosmetic wear, unlocked 128GB Blue, 12-month warranty.
+
+Post-write verification:
+- TEST: 160 mobile products (159 active, 156 active customer-visible), 574 evidence rows (558 active).
+- LIVE: 158 mobile products (158 active, 156 active customer-visible), 568 evidence rows (555 active).
+- Three new batch evidence rows in each environment.
+- Galaxy A57 128GB now has four active UK-used evidence rows in each environment.
+- Active customer-visible product business keys remain aligned: 156 in each environment.
+
+Do not fill the remaining exact used-evidence gaps with inappropriate offers:
+- Motorola Edge 70 Plus 256GB: currently surfaced offers are new retail; no credible UK used/refurb offer confirmed.
+- OPPO Reno16 F 5G 256GB: eBay refurb listing has free international postage; domestic UK dispatch not verified.
+- OPPO Find X10 Pro Max 512GB: exact UK eBay offers surfaced are new/sealed; not used evidence.
+
+Continue research on those three gaps, but only insert evidence when seller, market, condition and exact package are verified.
