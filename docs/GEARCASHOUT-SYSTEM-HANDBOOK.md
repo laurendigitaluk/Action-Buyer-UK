@@ -4609,3 +4609,71 @@ The authoritative relationship remains:
 No duplicate stock record is created merely to support navigation.
 
 **Current configuration note:** the live WEBSITE outlet currently has no `public_base_url`, so the automatic public website button will appear as soon as the actual retail storefront base URL is configured. The listing and public-detail backend already use the authoritative listing ID.
+
+
+---
+
+## TradeFlow shared mobile catalogue evidence — 5 November 2026
+
+TradeFlow maintains its own shared catalogue in two independent Supabase environments:
+
+- TEST: `nnsshnfkjcflucjrftzi`
+- LIVE: `gxsrajtqzdjvmceqcpgv`
+
+The shared mobile catalogue must be reconciled by stable business keys (manufacturer, model and package/storage), not by assuming UUIDs match. Product and evidence UUIDs are environment-specific. Tenant, customer, transaction, subscription, payment, domain, ownership and published website data must never be copied between environments.
+
+### Verified mobile evidence batch 108
+
+The 5 November batch added UK GBP used/refurbished evidence independently to both environments:
+
+- TEST: 14 evidence records added.
+- LIVE: 14 evidence records added, including the Samsung Galaxy S23 128GB evidence after its missing LIVE product package was created.
+- LIVE also received the missing Google Pixel 10 128GB package and three matching UK evidence records from the verified TEST shared catalogue.
+- LIVE received the missing Samsung Galaxy S23 128GB package.
+- The hidden Apple iPhone 18 seed and retired invalid Google Pixel 11 128GB package were deliberately not copied.
+
+After reconciliation, the active customer-visible Mobile Phones product keys matched: 156 in TEST and 156 in LIVE. The remaining total-row difference is explained by hidden/retired audit records, not a visible catalogue gap.
+
+### Evidence rules
+
+- UK evidence is recorded as `uk_new` or `uk_used`, with GBP currency, exact package, condition, source URL, observation date and availability.
+- Refurbished offers remain `uk_used` evidence with the seller's grade retained in `item_condition`.
+- Opened/never-used and sealed sold observations remain distinct from ordinary used evidence.
+- Do not infer stock from stale delivery dates, RAM from storage alone, or a package from an adjacent model.
+- Use `source_name` + `source_record_key` as the idempotency key; do not duplicate the same retailer/listing observation.
+- Comparison-site snapshots are leads, not additional seller observations.
+- No overseas evidence, contract totals or new retail offers may be placed in UK-used evidence.
+
+This batch changed catalogue data only. No application code, schema, valuation rules, RLS, Edge Functions, Stripe, tenant/customer data or Worker deployments were changed.
+
+
+## TradeFlow mobile catalogue batch 109 — 5 November 2026
+
+Three additional UK used/refurbished observations were added for the exact Samsung Galaxy A57 5G 128GB package in both TEST and LIVE:
+
+- refurbed UK: £272 Premium refurbished, exact 8GB/128GB Dual-SIM Awesome Gray; UK domestic dispatch, 12-month seller warranty and 30-day returns.
+- Cash Converters Levenshulme: £269.99, Good/previous-use, unlocked 128GB Grey, 12-month warranty. The page's accessory wording conflicts; do not use accessory inclusion in valuation.
+- Cash Converters Lewisham: £299.99, very minor cosmetic wear, unlocked 128GB Blue, 12-month warranty.
+
+All three are separate seller offers with their own stable source record keys. They were inserted independently in both environments. Product business keys remain aligned at 156 active customer-visible mobile packages in TEST and LIVE. Post-write totals: TEST 160 products / 574 evidence (558 active); LIVE 158 products / 568 evidence (555 active). The two extra TEST product rows remain hidden/retired audit records, not customer-visible catalogue differences.
+
+The same 3 used-evidence gaps remain intentionally open in both environments:
+- Motorola Edge 70 Plus 256GB — no credible exact UK used/refurb offer found; available MSE offers are new retail only.
+- OPPO Reno16 F 5G 256GB — eBay refurbished result currently advertises free international postage; UK dispatch is not verified, so excluded.
+- OPPO Find X10 Pro Max 512GB — surfaced exact UK listings are new/sealed, not used; overseas/international results excluded.
+
+No fabricated evidence was inserted for those gaps.
+
+
+## TradeFlow mobile catalogue batch 110 — 5 November 2026
+
+Five UK refurbished retail offers were added independently in TEST and LIVE for Apple iPhone 13 128GB:
+- giffgaff £209 Good, 128GB Midnight, in stock, 12-month warranty.
+- The Big Phone Store £199.99 Good, 128GB Midnight, in stock, minimum 85% battery health.
+- Reboxed £189 Good, 128GB Midnight, standard battery, 70-point TechCheck, minimum 80% battery, 12-month warranty and 30-day returns; preparing/refurbishment 4–6 days, last one at this price, checkout fee may apply.
+- Furbishmarket £191.99 Good, 128GB Starlight unlocked, 10 in stock, minimum 85% battery, 12-month warranty and free UK delivery.
+- Tech Market £199.99 Good, 128GB Midnight; listed on UK retailer homepage, stock quantity not confirmed, one-year warranty and 30-day returns advertised.
+
+TEST and LIVE each now have six active UK-used evidence records for iPhone 13 128GB. Post-write mobile totals: TEST 160 products (159 active / 156 active visible), 579 evidence (563 active); LIVE 158 products (158 active / 156 active visible), 573 evidence (560 active). Active customer-visible mobile product keys remain aligned 156/156, with no missing keys in either direction.
+
+Three exact used-evidence gaps remain in both environments: Motorola Edge 70 Plus 256GB, OPPO Find X10 Pro Max 512GB and OPPO Reno16 F 5G 256GB. No evidence was inserted for these because current results did not meet exact UK used/refurbished seller/dispatch/condition checks.

@@ -3995,3 +3995,81 @@ When staff need to inspect a published listing, navigation must come from the au
 - Do not generate URLs from product names or guessed slugs; the listing UUID is authoritative.
 
 Current live database finding: the WEBSITE outlet exists and is active, but `public_base_url` is still NULL. Therefore do not invent a public domain. Configure the real retail storefront base URL first; the staff view-link logic is already prepared for it.
+
+
+---
+
+## TradeFlow shared mobile catalogue operating rule — 5 November 2026
+
+When continuing mobile catalogue work in TradeFlow, perform the actual product/evidence writes in both current Supabase environments after verifying the existing records. Research notes or GitHub checkpoints alone do not complete a catalogue batch.
+
+### Environment and identity rules
+
+- TEST project: `nnsshnfkjcflucjrftzi`.
+- LIVE project: `gxsrajtqzdjvmceqcpgv`.
+- The old retired TEST project `twfbmjwwqzxdxvclxbun` must not be used.
+- Resolve products by manufacturer + exact model + package key within the Mobile Phones category/branch. Never assume TEST and LIVE UUIDs are the same.
+- Shared catalogue products/categories/evidence are reconciled across environments; tenant/customer/transaction/subscription/payment/domain/ownership/published-content records remain environment-specific.
+- Check existing product and evidence rows before every batch. Preserve hidden and retired audit records; do not promote unverified seeds.
+
+### Evidence insertion controls
+
+- Use `shared_market_evidence` for platform-managed shared evidence, with a trusted administrative/server-side write path.
+- UK observations use `uk_new` or `uk_used`, currency `GBP`, exact storage/package, source URL, condition, sales channel, availability and observed date.
+- Refurbished offers belong in `uk_used` with the retailer's exact grade retained.
+- Opened/never-used and sealed sold items must not be relabelled as ordinary used.
+- Keep UK-used, UK-new and overseas evidence separate. Exclude contracts, overseas dispatch and unverified seller/variant leads.
+- Protect idempotency with the unique `(source_name, source_record_key)` key. Use stable source keys and `ON CONFLICT DO NOTHING` for repeatable imports.
+- Do not overwrite an existing valid evidence row just to refresh a price. Record a new observation with a new source key when it is genuinely a new capture.
+- A source comparison feed is not a second seller observation; avoid double-counting retailer feeds and colour-filtered duplicates.
+
+### Required post-write verification
+
+1. Verify every intended product resolves to exactly one exact package in each environment.
+2. Verify the number of inserted evidence rows and their linked product IDs independently in TEST and LIVE.
+3. Compare active customer-visible product business keys across environments.
+4. Confirm hidden/retired products remain intentionally hidden/inactive.
+5. Confirm no tenant/customer/payment/domain data changed.
+6. Record the batch in TradeFlow `PROJECT-MEMORY` with environment-specific IDs and post-write counts.
+
+### Batch 108 result — 5 November 2026
+
+- Added 14 UK evidence rows in TEST and 14 in LIVE for Pixel 8 128GB, iPhone 14 128GB, Galaxy S23 128GB/256GB, Motorola Edge 50 Neo 256GB and iPhone 15 Pro 256GB.
+- Added the missing LIVE Galaxy S23 128GB catalogue package and its UK-used evidence.
+- Added the missing LIVE Pixel 10 128GB package and mirrored its three existing UK evidence records with a LIVE-specific product ID.
+- TEST and LIVE now have 156 matching active customer-visible Mobile Phones product keys.
+- No Worker deployment or application-code/schema/valuation/RLS/Edge Function/Stripe change was part of this data-only batch.
+
+
+## TradeFlow mobile catalogue batch 109 — 5 November 2026
+
+Added three independently verified UK used/refurbished offers for Samsung Galaxy A57 5G 128GB to both TEST and LIVE. Exact package match:
+- refurbed UK £272 Premium, 8GB RAM/128GB, domestic UK dispatch, 12-month seller warranty and 30-day returns.
+- Cash Converters UK £269.99 Good, unlocked 128GB Grey, 12-month warranty; accessory wording conflicts and must not be used for valuation.
+- Cash Converters UK £299.99, very minor cosmetic wear, unlocked 128GB Blue, 12-month warranty.
+
+Post-write verification:
+- TEST: 160 mobile products (159 active, 156 active customer-visible), 574 evidence rows (558 active).
+- LIVE: 158 mobile products (158 active, 156 active customer-visible), 568 evidence rows (555 active).
+- Three new batch evidence rows in each environment.
+- Galaxy A57 128GB now has four active UK-used evidence rows in each environment.
+- Active customer-visible product business keys remain aligned: 156 in each environment.
+
+Do not fill the remaining exact used-evidence gaps with inappropriate offers:
+- Motorola Edge 70 Plus 256GB: currently surfaced offers are new retail; no credible UK used/refurb offer confirmed.
+- OPPO Reno16 F 5G 256GB: eBay refurb listing has free international postage; domestic UK dispatch not verified.
+- OPPO Find X10 Pro Max 512GB: exact UK eBay offers surfaced are new/sealed; not used evidence.
+
+Continue research on those three gaps, but only insert evidence when seller, market, condition and exact package are verified.
+
+## TradeFlow mobile catalogue batch 110 — 5 November 2026
+
+Five verified UK refurbished offers for Apple iPhone 13 128GB were inserted directly and independently into both current TradeFlow Supabase environments. Prices/grades: giffgaff £209 Good; The Big Phone Store £199.99 Good; Reboxed £189 Good (preparing/refurbishing 4–6 days, checkout fee may apply); Furbishmarket £191.99 Good; Tech Market £199.99 Good (listed, live stock quantity not stated). All records preserve 128GB, retailer grade, source URL, GBP and availability caveats.
+
+Post-write verification:
+- TEST: 160 mobile products (159 active / 156 active visible), 579 evidence rows (563 active).
+- LIVE: 158 mobile products (158 active / 156 active visible), 573 evidence rows (560 active).
+- iPhone 13 128GB: six active UK-used observations in each environment.
+- Active customer-visible mobile product business keys: 156 in each environment; zero differences.
+
+Continue to maintain exact package matches and independent TEST/LIVE IDs. Do not add evidence for a product when seller dispatch, condition, or exact variant is not verified.
