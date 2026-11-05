@@ -4609,3 +4609,21 @@ The authoritative relationship remains:
 No duplicate stock record is created merely to support navigation.
 
 **Current configuration note:** the live WEBSITE outlet currently has no `public_base_url`, so the automatic public website button will appear as soon as the actual retail storefront base URL is configured. The listing and public-detail backend already use the authoritative listing ID.
+
+
+## TradeFlow shared mobile catalogue — evidence batch 115 — 5 November 2026
+
+The TradeFlow mobile-phone master catalogue is maintained in separate LIVE and TEST Supabase projects. Catalogue evidence additions must be written to both environments using each environment's own master-product UUIDs. Do not copy tenant, customer, website, domain, ownership, payment or order data between environments.
+
+Two UK-new retail price observations were added to both environments on 5 November 2026:
+
+- OPPO Find X10, 12GB RAM / 256GB: £999.00 via Amazon, as listed by the MoneySavingExpert SIM-free comparison at https://www.moneysavingexpert.com/cheap-mobile-finder/sim-free/oppo/find-x10/. Checkout and stock were not independently confirmed; retain availability as `listed`.
+- OPPO Reno16 F 5G, 8GB RAM / 256GB: £366.99 via Amazon, listed in stock by Which? at https://www.which.co.uk/reviews/mobile-phones/oppo-reno16-f-5g-256gb-8gb. Stock is the comparison site's report, not a separate Amazon checkout test.
+
+The Find X10's existing note said it was temporarily hidden pending exact UK storage-variant price verification. The £999 comparison observation verifies the exact 12GB/256GB UK variant, so the existing Find X10 catalogue entry was made customer-visible in both environments. No other visibility settings changed.
+
+Post-write verification: LIVE and TEST each contain 567 active mobile evidence rows (271 UK-new and 296 UK-used). Both have 157 customer-visible active mobile products. The shared evidence comparison fingerprint matches across both environments for model, package, evidence type, source URL, price, condition and sales channel. LIVE has 158 active mobile products, 4 without used evidence and none without any evidence. TEST has 159 active mobile products, 5 without used evidence and 1 without any evidence. The hidden TEST-only iPhone 18 256GB remains untouched.
+
+The four common used-evidence gaps remain Motorola Edge 70 Plus 256GB, OPPO Find X10 256GB, OPPO Find X10 Pro Max 512GB and OPPO Reno16 F 5G 256GB. Search results for exact eBay/refurb listings were not imported where a direct item-level URL and verified condition/seller details could not be established. New-condition prices must not be labelled as used evidence. UK-used evidence remains reference-only and excluded from automatic valuation.
+
+No code, schema, RLS, RPC, Edge Function, Stripe, tenant, customer, order, payment, ownership or Cloudflare Worker changes were made. No deployment was required.
