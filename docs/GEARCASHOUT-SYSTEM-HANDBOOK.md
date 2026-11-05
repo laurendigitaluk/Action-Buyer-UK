@@ -4609,3 +4609,39 @@ The authoritative relationship remains:
 No duplicate stock record is created merely to support navigation.
 
 **Current configuration note:** the live WEBSITE outlet currently has no `public_base_url`, so the automatic public website button will appear as soon as the actual retail storefront base URL is configured. The listing and public-detail backend already use the authoritative listing ID.
+
+
+---
+
+## TradeFlow shared mobile catalogue evidence — 5 November 2026
+
+TradeFlow maintains its own shared catalogue in two independent Supabase environments:
+
+- TEST: `nnsshnfkjcflucjrftzi`
+- LIVE: `gxsrajtqzdjvmceqcpgv`
+
+The shared mobile catalogue must be reconciled by stable business keys (manufacturer, model and package/storage), not by assuming UUIDs match. Product and evidence UUIDs are environment-specific. Tenant, customer, transaction, subscription, payment, domain, ownership and published website data must never be copied between environments.
+
+### Verified mobile evidence batch 108
+
+The 5 November batch added UK GBP used/refurbished evidence independently to both environments:
+
+- TEST: 14 evidence records added.
+- LIVE: 14 evidence records added, including the Samsung Galaxy S23 128GB evidence after its missing LIVE product package was created.
+- LIVE also received the missing Google Pixel 10 128GB package and three matching UK evidence records from the verified TEST shared catalogue.
+- LIVE received the missing Samsung Galaxy S23 128GB package.
+- The hidden Apple iPhone 18 seed and retired invalid Google Pixel 11 128GB package were deliberately not copied.
+
+After reconciliation, the active customer-visible Mobile Phones product keys matched: 156 in TEST and 156 in LIVE. The remaining total-row difference is explained by hidden/retired audit records, not a visible catalogue gap.
+
+### Evidence rules
+
+- UK evidence is recorded as `uk_new` or `uk_used`, with GBP currency, exact package, condition, source URL, observation date and availability.
+- Refurbished offers remain `uk_used` evidence with the seller's grade retained in `item_condition`.
+- Opened/never-used and sealed sold observations remain distinct from ordinary used evidence.
+- Do not infer stock from stale delivery dates, RAM from storage alone, or a package from an adjacent model.
+- Use `source_name` + `source_record_key` as the idempotency key; do not duplicate the same retailer/listing observation.
+- Comparison-site snapshots are leads, not additional seller observations.
+- No overseas evidence, contract totals or new retail offers may be placed in UK-used evidence.
+
+This batch changed catalogue data only. No application code, schema, valuation rules, RLS, Edge Functions, Stripe, tenant/customer data or Worker deployments were changed.
