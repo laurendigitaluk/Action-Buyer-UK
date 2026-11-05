@@ -4663,3 +4663,17 @@ The same 3 used-evidence gaps remain intentionally open in both environments:
 - OPPO Find X10 Pro Max 512GB — surfaced exact UK listings are new/sealed, not used; overseas/international results excluded.
 
 No fabricated evidence was inserted for those gaps.
+
+
+## TradeFlow mobile catalogue batch 110 — 5 November 2026
+
+Five UK refurbished retail offers were added independently in TEST and LIVE for Apple iPhone 13 128GB:
+- giffgaff £209 Good, 128GB Midnight, in stock, 12-month warranty.
+- The Big Phone Store £199.99 Good, 128GB Midnight, in stock, minimum 85% battery health.
+- Reboxed £189 Good, 128GB Midnight, standard battery, 70-point TechCheck, minimum 80% battery, 12-month warranty and 30-day returns; preparing/refurbishment 4–6 days, last one at this price, checkout fee may apply.
+- Furbishmarket £191.99 Good, 128GB Starlight unlocked, 10 in stock, minimum 85% battery, 12-month warranty and free UK delivery.
+- Tech Market £199.99 Good, 128GB Midnight; listed on UK retailer homepage, stock quantity not confirmed, one-year warranty and 30-day returns advertised.
+
+TEST and LIVE each now have six active UK-used evidence records for iPhone 13 128GB. Post-write mobile totals: TEST 160 products (159 active / 156 active visible), 579 evidence (563 active); LIVE 158 products (158 active / 156 active visible), 573 evidence (560 active). Active customer-visible mobile product keys remain aligned 156/156, with no missing keys in either direction.
+
+Three exact used-evidence gaps remain in both environments: Motorola Edge 70 Plus 256GB, OPPO Find X10 Pro Max 512GB and OPPO Reno16 F 5G 256GB. No evidence was inserted for these because current results did not meet exact UK used/refurbished seller/dispatch/condition checks.
