@@ -3995,3 +3995,47 @@ When staff need to inspect a published listing, navigation must come from the au
 - Do not generate URLs from product names or guessed slugs; the listing UUID is authoritative.
 
 Current live database finding: the WEBSITE outlet exists and is active, but `public_base_url` is still NULL. Therefore do not invent a public domain. Configure the real retail storefront base URL first; the staff view-link logic is already prepared for it.
+
+
+---
+
+## TradeFlow shared mobile catalogue operating rule — 5 November 2026
+
+When continuing mobile catalogue work in TradeFlow, perform the actual product/evidence writes in both current Supabase environments after verifying the existing records. Research notes or GitHub checkpoints alone do not complete a catalogue batch.
+
+### Environment and identity rules
+
+- TEST project: `nnsshnfkjcflucjrftzi`.
+- LIVE project: `gxsrajtqzdjvmceqcpgv`.
+- The old retired TEST project `twfbmjwwqzxdxvclxbun` must not be used.
+- Resolve products by manufacturer + exact model + package key within the Mobile Phones category/branch. Never assume TEST and LIVE UUIDs are the same.
+- Shared catalogue products/categories/evidence are reconciled across environments; tenant/customer/transaction/subscription/payment/domain/ownership/published-content records remain environment-specific.
+- Check existing product and evidence rows before every batch. Preserve hidden and retired audit records; do not promote unverified seeds.
+
+### Evidence insertion controls
+
+- Use `shared_market_evidence` for platform-managed shared evidence, with a trusted administrative/server-side write path.
+- UK observations use `uk_new` or `uk_used`, currency `GBP`, exact storage/package, source URL, condition, sales channel, availability and observed date.
+- Refurbished offers belong in `uk_used` with the retailer's exact grade retained.
+- Opened/never-used and sealed sold items must not be relabelled as ordinary used.
+- Keep UK-used, UK-new and overseas evidence separate. Exclude contracts, overseas dispatch and unverified seller/variant leads.
+- Protect idempotency with the unique `(source_name, source_record_key)` key. Use stable source keys and `ON CONFLICT DO NOTHING` for repeatable imports.
+- Do not overwrite an existing valid evidence row just to refresh a price. Record a new observation with a new source key when it is genuinely a new capture.
+- A source comparison feed is not a second seller observation; avoid double-counting retailer feeds and colour-filtered duplicates.
+
+### Required post-write verification
+
+1. Verify every intended product resolves to exactly one exact package in each environment.
+2. Verify the number of inserted evidence rows and their linked product IDs independently in TEST and LIVE.
+3. Compare active customer-visible product business keys across environments.
+4. Confirm hidden/retired products remain intentionally hidden/inactive.
+5. Confirm no tenant/customer/payment/domain data changed.
+6. Record the batch in TradeFlow `PROJECT-MEMORY` with environment-specific IDs and post-write counts.
+
+### Batch 108 result — 5 November 2026
+
+- Added 14 UK evidence rows in TEST and 14 in LIVE for Pixel 8 128GB, iPhone 14 128GB, Galaxy S23 128GB/256GB, Motorola Edge 50 Neo 256GB and iPhone 15 Pro 256GB.
+- Added the missing LIVE Galaxy S23 128GB catalogue package and its UK-used evidence.
+- Added the missing LIVE Pixel 10 128GB package and mirrored its three existing UK evidence records with a LIVE-specific product ID.
+- TEST and LIVE now have 156 matching active customer-visible Mobile Phones product keys.
+- No Worker deployment or application-code/schema/valuation/RLS/Edge Function/Stripe change was part of this data-only batch.
