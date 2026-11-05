@@ -3995,3 +3995,16 @@ When staff need to inspect a published listing, navigation must come from the au
 - Do not generate URLs from product names or guessed slugs; the listing UUID is authoritative.
 
 Current live database finding: the WEBSITE outlet exists and is active, but `public_base_url` is still NULL. Therefore do not invent a public domain. Configure the real retail storefront base URL first; the staff view-link logic is already prepared for it.
+
+
+## TradeFlow catalogue operating note — mobile evidence batch 115 — 5 November 2026
+
+When adding shared TradeFlow catalogue evidence, always use the LIVE and TEST master-product UUID belonging to that same environment. Preflight source URLs and stable source keys in both databases before inserting. After insertion, read back both environments and compare active evidence on model, package, evidence type, source URL, price, condition and sales channel. Never use a LIVE UUID in TEST or vice versa.
+
+Batch 115 added:
+- OPPO Find X10 12GB/256GB — UK-new £999 via Amazon, recorded from MoneySavingExpert's SIM-free comparison page. Availability is `listed`; Amazon checkout/stock was not independently confirmed. The product's existing pending-price-verification note was satisfied, and the product was made customer-visible in both LIVE and TEST.
+- OPPO Reno16 F 5G 8GB/256GB — UK-new £366.99 via Amazon, recorded from Which?'s retailer comparison, which reported it in stock. Do not imply independent Amazon checkout verification.
+
+Both additions were inserted in LIVE and TEST. Each environment now has 567 active mobile evidence rows (271 UK-new / 296 UK-used) and 157 visible active mobile products. Comparable evidence fingerprints match. LIVE: 158 active products, 4 without used evidence, 0 without any evidence. TEST: 159 active products, 5 without used evidence, 1 without any evidence. The hidden TEST-only iPhone 18 256GB remains untouched.
+
+Continue used-market research for Motorola Edge 70 Plus 256GB, OPPO Find X10 256GB, OPPO Find X10 Pro Max 512GB and OPPO Reno16 F 5G 256GB. Do not import eBay category/search snippets as item-level evidence. A qualifying used/refurb row needs an exact variant, direct item URL, price, explicit condition and identifiable seller/location details. Opened-never-used and new listings are not used evidence. UK-used evidence is reference-only and must not feed automatic valuation.
