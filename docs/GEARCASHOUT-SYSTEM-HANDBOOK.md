@@ -4627,3 +4627,18 @@ Post-write verification: LIVE and TEST each contain 567 active mobile evidence r
 The four common used-evidence gaps remain Motorola Edge 70 Plus 256GB, OPPO Find X10 256GB, OPPO Find X10 Pro Max 512GB and OPPO Reno16 F 5G 256GB. Search results for exact eBay/refurb listings were not imported where a direct item-level URL and verified condition/seller details could not be established. New-condition prices must not be labelled as used evidence. UK-used evidence remains reference-only and excluded from automatic valuation.
 
 No code, schema, RLS, RPC, Edge Function, Stripe, tenant, customer, order, payment, ownership or Cloudflare Worker changes were made. No deployment was required.
+
+
+## Cross-project reference: TradeFlow Gemma research pipeline — 6 November 2026
+
+TradeFlow has a separate local research agent in `laurendigitaluk/TradeFlow/tools/tradeflow-gemma-agent`. It is not the GearCashOut local agent and must not share runtime configuration or database writes with it.
+
+TradeFlow pipeline trace:
+
+`Start-TradeFlow-Gemma.ps1 → src/index.mjs → src/agent.mjs → DuckDuckGo/Bing/Mojeek → direct UK product page fetch → visible GBP price filter → one Ollama batch extraction per research task → strict evidence validation → independent exact-product lookup in TEST and LIVE → TEST-only owner-review queue`.
+
+The 6 November K1 baseline took 9m31s for two separate eight-source tasks and returned zero accepted candidates. The cause was one serialized Ollama inference per fetched page, with irrelevant collection/forum/search pages reaching extraction. The TradeFlow feature branch `fix/gemma-batched-extraction-20261106` changes this to prefilter URLs and visible GBP prices before one consolidated model call per task. The UK-new and UK-used tasks remain separate.
+
+TradeFlow uses TEST project `nnsshnfkjcflucjrftzi` and LIVE project `gxsrajtqzdjvmceqcpgv`. It stages candidates in its TEST-only owner-review queue; it does not write master catalogue/evidence rows directly. This is not a GearCashOut database workflow.
+
+Do not copy or reuse TradeFlow environment files, service-role credentials, project references or launcher configuration in GearCashOut. In particular, `C:\\GearCashOut-Config\\.env` remains exclusively GearCashOut configuration and must never be read, overwritten or repurposed by TradeFlow.
