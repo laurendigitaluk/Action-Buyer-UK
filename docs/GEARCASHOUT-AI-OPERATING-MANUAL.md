@@ -4084,3 +4084,8 @@ TradeFlow's first controlled Gemma dry-run found one irrelevant search result an
 ### TradeFlow collection route diagnostics — 6 November 2026
 
 TradeFlow's approved-source probe now uses the known Creality K1 collection URL directly and exposes registry errors, fetch errors, empty routes and successful discoveries in progress output. A collection page is only a discovery hub; only a linked direct product page with explicit UK GBP pricing can become evidence. Keep this implementation and registry configuration separate from GearCashOut's own research pipeline.
+
+
+### TradeFlow Shopify collection discovery — 6 November 2026
+
+For TradeFlow research, if a Shopify collection page is fetched but HTML extraction yields no exact-model product links, use the collection's public products JSON endpoint as a discovery fallback. Match product title/handle to the requested exact model, exclude sibling variants, then fetch each direct product page. Never treat collection pages or collection JSON as evidence. This is a TradeFlow-only behaviour.
