@@ -4074,3 +4074,8 @@ The TradeFlow Gemma update script is designed to preserve the local TradeFlow `.
 ### TradeFlow updater recovery boundary — 6 November 2026
 
 TradeFlow's corrected local updater now extracts only its own agent subtree using .NET ZipArchive and uses a short temporary path. It only rolls back when the previous launcher and agent entry point were verified in backup. It preserves TradeFlow `.env`, task files and logs. Do not use this updater for GearCashOut or access `C:\\GearCashOut-Config\\.env`.
+
+
+### TradeFlow category-specific source coverage — 6 November 2026
+
+TradeFlow's first controlled Gemma dry-run found one irrelevant search result and no eligible product pages. The approved-source registry was camera-centric, so a Creality UK Official Store source was added to TradeFlow TEST and LIVE with matching metadata. TradeFlow's source probe now permits exact-model collection hubs for discovery, while keeping collection pages out of evidence. Keep these rows and code separate from GearCashOut's own research pipeline.
