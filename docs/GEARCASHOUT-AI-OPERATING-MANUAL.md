@@ -4089,3 +4089,8 @@ TradeFlow's approved-source probe now uses the known Creality K1 collection URL 
 ### TradeFlow Shopify collection discovery — 6 November 2026
 
 For TradeFlow research, if a Shopify collection page is fetched but HTML extraction yields no exact-model product links, use the collection's public products JSON endpoint as a discovery fallback. Match product title/handle to the requested exact model, exclude sibling variants, then fetch each direct product page. Never treat collection pages or collection JSON as evidence. This is a TradeFlow-only behaviour.
+
+
+### TradeFlow brand-aware research source selection — 6 November 2026
+
+When selecting manufacturer sources for TradeFlow research, require a match between the task manufacturer and the source manufacturer. Never send Creality searches to DJI or Sony; never send DJI/Sony product queries to unrelated manufacturer sites. Retailers and marketplaces can be searched cross-brand, subject to UK scope and exact-model validation. TradeFlow's Shopify collection JSON fallback has been syntax-corrected and CI-verified; collection data remains discovery-only.
