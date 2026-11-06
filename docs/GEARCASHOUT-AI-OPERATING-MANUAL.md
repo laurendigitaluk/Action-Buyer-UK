@@ -4059,3 +4059,8 @@ The working GearCashOut discovery pattern is the reference implementation for Tr
 ### TradeFlow approved-source registry — implementation status (6 November 2026)
 
 The TradeFlow TEST and LIVE databases now contain matching `platform_research_sources` tables and the same curated 20-source public source directory. TradeFlow reads its TEST registry as a read-only research control plane, balances UK new, UK used and official sources, and probes in groups of four. Source-specific URL templates are supported. This reuses GearCashOut's registry design without sharing database rows, credentials, product records, evidence or customer data. Do not direct TradeFlow at GearCashOut's database or `.env`.
+
+
+### TradeFlow deeper collection discovery — 6 November 2026
+
+TradeFlow Gemma can now use UK collection/category pages to discover individual model listings without treating the collection page itself as evidence. Discovery is bounded (up to six collections and twelve matching links per collection), and direct product pages must pass the normal GBP, model, condition and availability checks. Manufacturer/model search terms replace internal package labels. PR #256 passed 32/32 CI tests on the feature branch only. Keep GearCashOut credentials, source registry and evidence pipeline independent.
