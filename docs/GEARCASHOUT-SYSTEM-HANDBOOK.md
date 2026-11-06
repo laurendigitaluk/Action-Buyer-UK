@@ -4645,3 +4645,6 @@ Do not copy or reuse TradeFlow environment files, service-role credentials, proj
 
 
 TradeFlow regression verification update (6 November 2026): the automated GitHub Actions test suite passed on TradeFlow commit `53ced5c47674a13e1f92d4f6ce4b4106af0ede52` (run `42143240473`). The Research PC runtime benchmark and dry-run remain pending; do not describe the TradeFlow repair as verified live until that test is completed.
+
+
+TradeFlow merged-branch verification update (6 November 2026): PR #242 was merged into `feature/tradeflow-gemma-agent-foundation-20261105` as `e31d974b0b513e1d5101fa6678d798ac1555a2df`. GitHub Actions run `42143345106` passed on that merged commit. Research PC deployment and real runtime verification remain pending.
