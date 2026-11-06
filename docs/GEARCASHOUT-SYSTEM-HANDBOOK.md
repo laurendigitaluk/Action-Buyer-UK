@@ -4675,3 +4675,8 @@ TradeFlow is being aligned with the established GearCashOut research-discovery p
 ### TradeFlow source-registry parity — implementation status (6 November 2026)
 
 TradeFlow now has its own `platform_research_sources` table in TEST and LIVE, using the GearCashOut source metadata pattern including source type, country, research scope, priority, search URL template, verification and site-status fields. Both environments have the same curated 20-source public directory. The TradeFlow agent reads the TEST registry only and rotates through UK new-retail, UK used-market and official-manufacturer lanes in bounded groups of four. Overseas sources are excluded from UK evidence. This is a separate TradeFlow registry; GearCashOut's source table remains independent and is not queried by TradeFlow.
+
+
+### TradeFlow collection-page discovery parity — 6 November 2026
+
+TradeFlow's follow-up Gemma implementation now treats UK collection/category pages as discovery hubs only. It follows bounded sets of matching individual product links, resolves relative URLs and keeps collection pages out of evidence. Search identity is manufacturer + model rather than internal package labels. Direct product pages still require visible GBP pricing and strict identity, condition and availability validation. PR #256 passed CI (32/32 tests) on the TradeFlow feature branch; it has not been deployed to production. This is an architectural parity note only; GearCashOut code and data remain separate.
