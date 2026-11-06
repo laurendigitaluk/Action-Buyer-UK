@@ -4008,3 +4008,21 @@ Batch 115 added:
 Both additions were inserted in LIVE and TEST. Each environment now has 567 active mobile evidence rows (271 UK-new / 296 UK-used) and 157 visible active mobile products. Comparable evidence fingerprints match. LIVE: 158 active products, 4 without used evidence, 0 without any evidence. TEST: 159 active products, 5 without used evidence, 1 without any evidence. The hidden TEST-only iPhone 18 256GB remains untouched.
 
 Continue used-market research for Motorola Edge 70 Plus 256GB, OPPO Find X10 256GB, OPPO Find X10 Pro Max 512GB and OPPO Reno16 F 5G 256GB. Do not import eBay category/search snippets as item-level evidence. A qualifying used/refurb row needs an exact variant, direct item URL, price, explicit condition and identifiable seller/location details. Opened-never-used and new listings are not used evidence. UK-used evidence is reference-only and must not feed automatic valuation.
+
+
+## Cross-project AI continuity note: TradeFlow Gemma — 6 November 2026
+
+TradeFlow has its own project-memory key (`tradeflow`), Supabase projects, local agent and research queue. Keep TradeFlow memory and operating rules separate from GearCashOut. GearCashOut research lessons may inform design comparisons only where explicitly adopted; do not copy GearCashOut-specific catalogue, valuation or data assumptions into TradeFlow.
+
+The TradeFlow Gemma research agent previously performed one Ollama extraction per fetched source page. A measured K1 dry run on 6 November took 9m31s across separate UK-new and UK-used eight-source tasks, with zero accepted evidence. The repair branch `fix/gemma-batched-extraction-20261106` now:
+- rejects collection, search, category, forum and other non-product URLs before fetching;
+- requires a visible positive GBP price before invoking Gemma;
+- fetches pages in bounded groups of four;
+- sends remaining page excerpts in one consolidated Ollama request per research task;
+- maps results back to supplied source IDs and binds source URL, currency and evidence type in code;
+- preserves strict exact-model, UK/GBP, condition and availability validation;
+- keeps UK-new and UK-used tasks separate, CPU-only inference as the safe default, dry-run as default and owner approval before queue/import.
+
+Do not weaken evidence validation to increase candidate counts. HTTP 403/503/404 responses are unavailable sources, not evidence. Do not increase inference timeout as a performance fix. Do not change `C:\\GearCashOut-Config\\.env`; TradeFlow reads only its own agent-folder `.env` or explicit `TRADEFLOW_GEMMA_ENV_FILE`.
+
+Implementation status is not the same as live verification. The automated test workflow and a measured Research PC dry run must pass before marking the TradeFlow pipeline verified.
