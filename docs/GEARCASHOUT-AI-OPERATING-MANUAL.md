@@ -4054,3 +4054,8 @@ The Research PC dry-run after balanced provider merging passed all 27 tests but 
 ## Research architecture reuse by TradeFlow — 6 November 2026
 
 The working GearCashOut discovery pattern is the reference implementation for TradeFlow. The pattern comprises optional configured Google search, independent parallel DuckDuckGo/Bing/Mojeek providers, dedicated Amazon UK exact-model discovery, and direct probing of an approved source registry. Search results are discovery leads only: direct product-page retrieval and strict identity, UK source, GBP price, condition and availability validation remain mandatory before evidence can be accepted. TradeFlow must keep its own credentials, source registry and catalogue/evidence records; its agent must never read or overwrite `C:\\GearCashOut-Config\\.env`.
+
+
+### TradeFlow approved-source registry — implementation status (6 November 2026)
+
+The TradeFlow TEST and LIVE databases now contain matching `platform_research_sources` tables and the same curated 20-source public source directory. TradeFlow reads its TEST registry as a read-only research control plane, balances UK new, UK used and official sources, and probes in groups of four. Source-specific URL templates are supported. This reuses GearCashOut's registry design without sharing database rows, credentials, product records, evidence or customer data. Do not direct TradeFlow at GearCashOut's database or `.env`.
