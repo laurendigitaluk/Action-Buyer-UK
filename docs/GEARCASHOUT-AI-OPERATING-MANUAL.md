@@ -4064,3 +4064,8 @@ The TradeFlow TEST and LIVE databases now contain matching `platform_research_so
 ### TradeFlow deeper collection discovery — 6 November 2026
 
 TradeFlow Gemma can now use UK collection/category pages to discover individual model listings without treating the collection page itself as evidence. Discovery is bounded (up to six collections and twelve matching links per collection), and direct product pages must pass the normal GBP, model, condition and availability checks. Manufacturer/model search terms replace internal package labels. PR #256 passed 32/32 CI tests on the feature branch only. Keep GearCashOut credentials, source registry and evidence pipeline independent.
+
+
+### TradeFlow local updater safety — 6 November 2026
+
+The TradeFlow Gemma update script is designed to preserve the local TradeFlow `.env`, task files and logs, and must not access `C:\\GearCashOut-Config\\.env`. Treat it as a separate-project deployment helper, not as a GearCashOut update path.
