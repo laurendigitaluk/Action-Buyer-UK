@@ -4642,3 +4642,6 @@ The 6 November K1 baseline took 9m31s for two separate eight-source tasks and re
 TradeFlow uses TEST project `nnsshnfkjcflucjrftzi` and LIVE project `gxsrajtqzdjvmceqcpgv`. It stages candidates in its TEST-only owner-review queue; it does not write master catalogue/evidence rows directly. This is not a GearCashOut database workflow.
 
 Do not copy or reuse TradeFlow environment files, service-role credentials, project references or launcher configuration in GearCashOut. In particular, `C:\\GearCashOut-Config\\.env` remains exclusively GearCashOut configuration and must never be read, overwritten or repurposed by TradeFlow.
+
+
+TradeFlow regression verification update (6 November 2026): the automated GitHub Actions test suite passed on TradeFlow commit `53ced5c47674a13e1f92d4f6ce4b4106af0ede52` (run `42143240473`). The Research PC runtime benchmark and dry-run remain pending; do not describe the TradeFlow repair as verified live until that test is completed.
