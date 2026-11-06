@@ -4700,3 +4700,8 @@ A controlled TradeFlow Gemma dry-run returned no eligible product URLs because i
 ### TradeFlow Creality collection route diagnostics — 6 November 2026
 
 TradeFlow's second Research PC run passed its 33 tests but did not yield any eligible URLs. Its approved-source probe was silently swallowing source-registry and route errors while using a generic Shopify search URL. TradeFlow TEST and LIVE now point the Creality UK source directly to its K1 Series collection route, and the probe reports route failures/empty results and treats a matching collection page as discovery-only. Individual product pages must still be fetched and validated for GBP prices. This correction is TradeFlow-only.
+
+
+### TradeFlow Shopify collection extraction correction — 6 November 2026
+
+TradeFlow's Creality collection page was successfully fetched, but its dynamically rendered product cards were not returned by the ordinary HTML anchor parser. TradeFlow's research agent now falls back to Shopify's public collection products JSON endpoint, selects exact-model product handles, excludes sibling variants, and follows direct product pages for independent GBP/evidence validation. Collection pages and JSON metadata remain discovery-only. This is isolated to TradeFlow.
