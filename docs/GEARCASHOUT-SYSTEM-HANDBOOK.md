@@ -4680,3 +4680,8 @@ TradeFlow now has its own `platform_research_sources` table in TEST and LIVE, us
 ### TradeFlow collection-page discovery parity — 6 November 2026
 
 TradeFlow's follow-up Gemma implementation now treats UK collection/category pages as discovery hubs only. It follows bounded sets of matching individual product links, resolves relative URLs and keeps collection pages out of evidence. Search identity is manufacturer + model rather than internal package labels. Direct product pages still require visible GBP pricing and strict identity, condition and availability validation. PR #256 passed CI (32/32 tests) on the TradeFlow feature branch; it has not been deployed to production. This is an architectural parity note only; GearCashOut code and data remain separate.
+
+
+### TradeFlow Research PC update handoff — 6 November 2026
+
+TradeFlow's separate local Gemma updater now preserves its own `.env`, task files, logs and installed dependencies while updating code from the approved TradeFlow feature branch and running tests. It does not access GearCashOut's configuration folder. This is a TradeFlow-only operational procedure; GearCashOut's local configuration and agent remain independent.
