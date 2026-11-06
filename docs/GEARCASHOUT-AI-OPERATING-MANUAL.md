@@ -4026,3 +4026,6 @@ The TradeFlow Gemma research agent previously performed one Ollama extraction pe
 Do not weaken evidence validation to increase candidate counts. HTTP 403/503/404 responses are unavailable sources, not evidence. Do not increase inference timeout as a performance fix. Do not change `C:\\GearCashOut-Config\\.env`; TradeFlow reads only its own agent-folder `.env` or explicit `TRADEFLOW_GEMMA_ENV_FILE`.
 
 Implementation status is not the same as live verification. The automated test workflow and a measured Research PC dry run must pass before marking the TradeFlow pipeline verified.
+
+
+TradeFlow regression verification update (6 November 2026): the automated GitHub Actions test suite passed on TradeFlow commit `53ced5c47674a13e1f92d4f6ce4b4106af0ede52` (run `42143240473`). The Research PC runtime benchmark and dry-run remain pending; do not describe the TradeFlow repair as verified live until that test is completed.
