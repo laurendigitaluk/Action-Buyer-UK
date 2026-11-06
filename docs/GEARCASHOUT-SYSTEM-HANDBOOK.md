@@ -4705,3 +4705,8 @@ TradeFlow's second Research PC run passed its 33 tests but did not yield any eli
 ### TradeFlow Shopify collection extraction correction — 6 November 2026
 
 TradeFlow's Creality collection page was successfully fetched, but its dynamically rendered product cards were not returned by the ordinary HTML anchor parser. TradeFlow's research agent now falls back to Shopify's public collection products JSON endpoint, selects exact-model product handles, excludes sibling variants, and follows direct product pages for independent GBP/evidence validation. Collection pages and JSON metadata remain discovery-only. This is isolated to TradeFlow.
+
+
+### TradeFlow manufacturer source routing validation — 6 November 2026
+
+TradeFlow now filters manufacturer search sources by the requested product manufacturer before constructing manufacturer-site queries. A Creality printer task cannot trigger DJI or Sony manufacturer searches; relevant UK retailers and marketplaces remain available across brands. The Shopify collection JSON fallback syntax was corrected and passed TradeFlow CI (PR #257, run 42231223625). The correction remains isolated to TradeFlow.
