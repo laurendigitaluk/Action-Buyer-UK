@@ -4670,3 +4670,8 @@ The Research PC dry-run after balanced provider merging passed all 27 tests but 
 ## TradeFlow research architecture reuse — 6 November 2026
 
 TradeFlow is being aligned with the established GearCashOut research-discovery pattern: optional official Google Web Search Service / Google Programmable Search, parallel DuckDuckGo/Bing/Mojeek fallbacks, explicit Amazon UK discovery, and an approved-source registry. The implementation must remain independently configured and independently stored: TradeFlow uses its own `.env`, source registry and catalogue/evidence tables. Do not make TradeFlow read, copy or modify the GearCashOut `.env`, and do not copy GearCashOut catalogue, customer or evidence rows. This is architecture reuse, not database sharing.
+
+
+### TradeFlow source-registry parity — implementation status (6 November 2026)
+
+TradeFlow now has its own `platform_research_sources` table in TEST and LIVE, using the GearCashOut source metadata pattern including source type, country, research scope, priority, search URL template, verification and site-status fields. Both environments have the same curated 20-source public directory. The TradeFlow agent reads the TEST registry only and rotates through UK new-retail, UK used-market and official-manufacturer lanes in bounded groups of four. Overseas sources are excluded from UK evidence. This is a separate TradeFlow registry; GearCashOut's source table remains independent and is not queried by TradeFlow.
