@@ -4690,3 +4690,8 @@ TradeFlow's separate local Gemma updater now preserves its own `.env`, task file
 ### TradeFlow updater correction — 6 November 2026
 
 The first TradeFlow Research PC updater attempt exposed a Windows PowerShell archive extraction/path issue. Its corrected version uses a short system-drive temp directory, selectively extracts only the TradeFlow Gemma agent subtree, and verifies a complete prior-code backup before rollback. It remains a separate TradeFlow-only tool and must not access GearCashOut configuration or files.
+
+
+### TradeFlow research source coverage correction — 6 November 2026
+
+A controlled TradeFlow Gemma dry-run returned no eligible product URLs because its initial 20-source directory was camera-centric and lacked a Creality official source. TradeFlow TEST and LIVE now each include the Creality UK Official Store as an official UK manufacturer source. Its search results may include exact-model collection hubs, which are discovery-only and must be expanded to direct product pages. This remains isolated from GearCashOut's own source registry and research data.
