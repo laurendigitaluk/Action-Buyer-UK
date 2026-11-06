@@ -4032,3 +4032,10 @@ TradeFlow regression verification update (6 November 2026): the automated GitHub
 
 
 TradeFlow merged-branch verification update (6 November 2026): PR #242 was merged into `feature/tradeflow-gemma-agent-foundation-20261105` as `e31d974b0b513e1d5101fa6678d798ac1555a2df`. GitHub Actions run `42143345106` passed on that merged commit. Research PC deployment and real runtime verification remain pending.
+
+
+## TradeFlow Gemma research correction — 6 November 2026
+
+TradeFlow's separate Gemma research agent must classify condition precisely. `Opened - never used` is eligible UK-used evidence, not UK-new evidence. Preserve that exact condition wording in the evidence record; do not discard it or relabel it as sealed/new. The corrected TradeFlow feature-branch implementation is PR #251, merged as `c31b856cb561099b730753d7de195c914e08c3bd`; CI run #50 passed. The prior local test result did not verify this rule because its test still expected rejection. The Research PC must be updated from the merged source and the corrected acceptance/rejection tests rerun before considering the rule locally verified.
+
+The latest Research PC controlled run returned 8 search results, 1 eligible URL, 0 fetched price-bearing pages, 0 Gemma calls and 0 accepted candidates; the only eligible eBay listing returned HTTP 403. Treat this as a search-result/page-fetch coverage failure, not a Gemma extraction failure. Do not enqueue/import until a genuine direct product page and its exact product identity, GBP price, condition and availability are verified. No catalogue/evidence data, TEST/LIVE customer or tenant data, credentials or deployments were changed by PR #251.
