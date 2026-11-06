@@ -4685,3 +4685,8 @@ TradeFlow's follow-up Gemma implementation now treats UK collection/category pag
 ### TradeFlow Research PC update handoff — 6 November 2026
 
 TradeFlow's separate local Gemma updater now preserves its own `.env`, task files, logs and installed dependencies while updating code from the approved TradeFlow feature branch and running tests. It does not access GearCashOut's configuration folder. This is a TradeFlow-only operational procedure; GearCashOut's local configuration and agent remain independent.
+
+
+### TradeFlow updater correction — 6 November 2026
+
+The first TradeFlow Research PC updater attempt exposed a Windows PowerShell archive extraction/path issue. Its corrected version uses a short system-drive temp directory, selectively extracts only the TradeFlow Gemma agent subtree, and verifies a complete prior-code backup before rollback. It remains a separate TradeFlow-only tool and must not access GearCashOut configuration or files.
