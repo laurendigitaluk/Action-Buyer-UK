@@ -4665,3 +4665,8 @@ TradeFlow's Gemma research agent now merges search results fairly across DuckDuc
 ## TradeFlow Gemma search diagnostics — 6 November 2026
 
 The Research PC dry-run after balanced provider merging passed all 27 tests but still returned 8 URLs, only 1 eligible product listing, 0 successfully fetched pages, 0 Gemma calls and 0 candidates. The local TradeFlow .env explicitly retained SEARCH_RESULTS_PER_TASK=8, overriding the code default of 18. The sole eligible eBay listing returned HTTP 403. Follow-up PR #253 adds provider result counts and logs each pre-fetch rejection with provider, title and URL; .env.example now sets 18. Existing local .env files are intentionally never overwritten: change only SEARCH_RESULTS_PER_TASK to 18 manually. Continue in dry-run and use the new diagnostics to improve search quality; do not weaken product/UK/evidence validation or enqueue/import until real source pages are accessible and verified. This is TradeFlow-only and does not alter the retired GearCashOut runtime or its configuration.
+
+
+## TradeFlow research architecture reuse — 6 November 2026
+
+TradeFlow is being aligned with the established GearCashOut research-discovery pattern: optional official Google Web Search Service / Google Programmable Search, parallel DuckDuckGo/Bing/Mojeek fallbacks, explicit Amazon UK discovery, and an approved-source registry. The implementation must remain independently configured and independently stored: TradeFlow uses its own `.env`, source registry and catalogue/evidence tables. Do not make TradeFlow read, copy or modify the GearCashOut `.env`, and do not copy GearCashOut catalogue, customer or evidence rows. This is architecture reuse, not database sharing.
