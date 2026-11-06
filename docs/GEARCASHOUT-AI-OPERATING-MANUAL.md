@@ -4069,3 +4069,8 @@ TradeFlow Gemma can now use UK collection/category pages to discover individual 
 ### TradeFlow local updater safety — 6 November 2026
 
 The TradeFlow Gemma update script is designed to preserve the local TradeFlow `.env`, task files and logs, and must not access `C:\\GearCashOut-Config\\.env`. Treat it as a separate-project deployment helper, not as a GearCashOut update path.
+
+
+### TradeFlow updater recovery boundary — 6 November 2026
+
+TradeFlow's corrected local updater now extracts only its own agent subtree using .NET ZipArchive and uses a short temporary path. It only rolls back when the previous launcher and agent entry point were verified in backup. It preserves TradeFlow `.env`, task files and logs. Do not use this updater for GearCashOut or access `C:\\GearCashOut-Config\\.env`.
