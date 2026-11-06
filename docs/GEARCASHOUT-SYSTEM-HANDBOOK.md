@@ -4710,3 +4710,8 @@ TradeFlow's Creality collection page was successfully fetched, but its dynamical
 ### TradeFlow manufacturer source routing validation — 6 November 2026
 
 TradeFlow now filters manufacturer search sources by the requested product manufacturer before constructing manufacturer-site queries. A Creality printer task cannot trigger DJI or Sony manufacturer searches; relevant UK retailers and marketplaces remain available across brands. The Shopify collection JSON fallback syntax was corrected and passed TradeFlow CI (PR #257, run 42231223625). The correction remains isolated to TradeFlow.
+
+
+### TradeFlow exact-model evidence guard — 6 November 2026
+
+A TradeFlow Creality K1 research run incorrectly proposed a £589 K1 Max product as evidence for the base K1 and also fetched a K1 Series CFS accessory. TradeFlow now checks exact model identity before fetching and rechecks the fetched product title/final URL before price extraction. K1 Max, K1C, K1 Combo and accessory/upgrade listings are excluded from base K1 research. Regression tests passed in CI (PR #259, run 42250634337); the invalid candidate was not imported. This correction is isolated to TradeFlow.
