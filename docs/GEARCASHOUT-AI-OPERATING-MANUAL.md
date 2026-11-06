@@ -4094,3 +4094,8 @@ For TradeFlow research, if a Shopify collection page is fetched but HTML extract
 ### TradeFlow brand-aware research source selection — 6 November 2026
 
 When selecting manufacturer sources for TradeFlow research, require a match between the task manufacturer and the source manufacturer. Never send Creality searches to DJI or Sony; never send DJI/Sony product queries to unrelated manufacturer sites. Retailers and marketplaces can be searched cross-brand, subject to UK scope and exact-model validation. TradeFlow's Shopify collection JSON fallback has been syntax-corrected and CI-verified; collection data remains discovery-only.
+
+
+### TradeFlow exact product identity validation — 6 November 2026
+
+TradeFlow's Gemma handoff must match the exact requested product, not merely contain the base model token. For a Creality K1 task, reject K1 Max, K1C, K1 Combo and CFS upgrade/accessory pages. Apply exact-model validation to candidate URL/title before fetch and again to the fetched page title/final URL before price extraction. The £589 K1 Max candidate was rejected and not imported. CI verified PR #259 (run 42250634337).
