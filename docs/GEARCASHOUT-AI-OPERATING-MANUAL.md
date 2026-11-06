@@ -4099,3 +4099,13 @@ When selecting manufacturer sources for TradeFlow research, require a match betw
 ### TradeFlow exact product identity validation — 6 November 2026
 
 TradeFlow's Gemma handoff must match the exact requested product, not merely contain the base model token. For a Creality K1 task, reject K1 Max, K1C, K1 Combo and CFS upgrade/accessory pages. Apply exact-model validation to candidate URL/title before fetch and again to the fetched page title/final URL before price extraction. The £589 K1 Max candidate was rejected and not imported. CI verified PR #259 (run 42250634337).
+
+
+
+### TradeFlow direct product-page fallback and dry-run findings — 6 November 2026
+
+TradeFlow's latest Research PC update/test completed with 38/38 tests passing, but the controlled dry-run still produced no accepted candidates: source pages were blocked, empty or lacked an exact direct product page; Gemma was not called. No TradeFlow queue, catalogue or evidence writes occurred.
+
+TradeFlow now supports an approved source registry entry pointing directly to a known product detail page, rather than requiring search or collection discovery first. The Creality UK official source in TradeFlow TEST and LIVE points to the exact K1 Speedy product page. The page currently shows £299 and Sold Out; any accepted observation must preserve sold-out availability and must not imply stock. PR #260 passed GitHub Actions run 42251672462 and merged into the TradeFlow feature branch as 230e6fda6390981b55939b40c0a26ad8496010ea. A local end-to-end dry-run of this direct route remains outstanding.
+
+Architecture rule for TradeFlow: use one shared research engine and reusable category profiles, not one-off rules for every product. Profiles describe the identity dimensions that distinguish products within a category (such as camera body/lens kit, drone bundle/controller, printer combo, phone storage, laptop RAM/CPU or console revision). Manufacturer and retailer source relevance belongs in the source registry. All findings still pass the common UK-source, GBP, direct listing, exact identity, condition, availability and human-review gates. This is a TradeFlow-only design note; do not change GearCashOut research code, credentials or data.
