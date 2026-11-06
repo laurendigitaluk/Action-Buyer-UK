@@ -4695,3 +4695,8 @@ The first TradeFlow Research PC updater attempt exposed a Windows PowerShell arc
 ### TradeFlow research source coverage correction — 6 November 2026
 
 A controlled TradeFlow Gemma dry-run returned no eligible product URLs because its initial 20-source directory was camera-centric and lacked a Creality official source. TradeFlow TEST and LIVE now each include the Creality UK Official Store as an official UK manufacturer source. Its search results may include exact-model collection hubs, which are discovery-only and must be expanded to direct product pages. This remains isolated from GearCashOut's own source registry and research data.
+
+
+### TradeFlow Creality collection route diagnostics — 6 November 2026
+
+TradeFlow's second Research PC run passed its 33 tests but did not yield any eligible URLs. Its approved-source probe was silently swallowing source-registry and route errors while using a generic Shopify search URL. TradeFlow TEST and LIVE now point the Creality UK source directly to its K1 Series collection route, and the probe reports route failures/empty results and treats a matching collection page as discovery-only. Individual product pages must still be fetched and validated for GBP prices. This correction is TradeFlow-only.
